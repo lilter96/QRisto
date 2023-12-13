@@ -1,0 +1,37 @@
+.submit-button {
+    border-radius: 5px;
+    position: relative;
+    vertical-align: top;
+    background-color: #BF2956;
+    text-align: left;
+    min-width: 124px;
+    font-size: 10px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 12px 20px 13px;
+    border: 0;
+    color: #fff;
+}
+
+.submit-button:hover
+{
+    opacity: 0.95;
+}
+
+.submit-button:active {
+    opacity: 0.8;
+}
+
+.submit-button::after {
+    content: '';
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    background: url(../../static/image/arrow-right-thin-svg.svg) no-repeat;
+    background-size: 20px auto;
+    width: 22px;
+    height: 20px;
+    transition: 0.3s;
+    pointer-events: none;
+}

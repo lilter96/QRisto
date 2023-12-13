@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QRisto.Application", "QRisto.Application\QRisto.Application.csproj", "{AD519B84-32CD-4574-8986-53E5C97C699B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QRisto.Core", "QRisto.Core\QRisto.Core.csproj", "{F4C92B75-568B-4F7E-8E2D-A5AC18834EB5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QRisto.Persistance", "QRisto.Persistance\QRisto.Persistance.csproj", "{3FFA7DD5-E1EF-44AA-B234-FF744DD3CB02}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QRisto.Presentation", "QRisto.Presentation\QRisto.Presentation.csproj", "{09FF106D-5B51-492C-B2ED-C32A297B0983}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AD519B84-32CD-4574-8986-53E5C97C699B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD519B84-32CD-4574-8986-53E5C97C699B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD519B84-32CD-4574-8986-53E5C97C699B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD519B84-32CD-4574-8986-53E5C97C699B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4C92B75-568B-4F7E-8E2D-A5AC18834EB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4C92B75-568B-4F7E-8E2D-A5AC18834EB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4C92B75-568B-4F7E-8E2D-A5AC18834EB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4C92B75-568B-4F7E-8E2D-A5AC18834EB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FFA7DD5-E1EF-44AA-B234-FF744DD3CB02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FFA7DD5-E1EF-44AA-B234-FF744DD3CB02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FFA7DD5-E1EF-44AA-B234-FF744DD3CB02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FFA7DD5-E1EF-44AA-B234-FF744DD3CB02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09FF106D-5B51-492C-B2ED-C32A297B0983}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09FF106D-5B51-492C-B2ED-C32A297B0983}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09FF106D-5B51-492C-B2ED-C32A297B0983}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09FF106D-5B51-492C-B2ED-C32A297B0983}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

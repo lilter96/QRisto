@@ -1,0 +1,50 @@
+.register-app-name {
+    text-decoration: none;
+    color: #c02956;
+    height: 28px;
+    margin: 0 0 46px 0;
+    display: block;
+    letter-spacing: 1em;
+    text-align: center;
+    margin-right: -1em;
+}
+
+.register-wrapper {
+    height: 100vh;
+    background-color: #f3f0f1;
+}
+
+.register-form-wrapper {
+    width: 420px;
+    margin: 0 auto;
+    padding: 51px 0px 60px 0;
+
+    border-radius: 10px;
+
+}
+.register-auth-text {
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.09em;
+    margin-bottom: 15px;
+    margin: 0px 0 20px;
+    font: Normal 14px 'Open Sans', sans-serif;
+}
+
+.register-auth-text {
+    text-align:  center;
+}
+
+.register-form {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 34px 50px 43px;
+    text-align: left;
+}
+
+.register-promocode {
+    color: #c02956;
+    display: inline-block;
+    text-decoration: dashed;
+}

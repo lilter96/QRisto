@@ -1,0 +1,60 @@
+.login-wrapper {
+    background-color: #c02956;
+    height: 100vh;
+}
+
+.login-form-wrapper {
+    width: 420px;
+    margin: 0 auto;
+    padding: 51px 0px 60px 0;
+}
+
+.app-name {
+    text-decoration: none;
+    color: white;
+    height: 28px;
+    margin: 0 0 46px 0;
+    display: block;
+    letter-spacing: 1em;
+    text-align: center;
+    margin-right: -1em;
+}
+
+.login-form {
+    background-color: white;
+    border-radius: 10px;
+    padding: 34px 50px 43px;
+}
+
+.auth-text {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 400;
+    color: #333;
+    margin-bottom: 26px;
+}
+
+.login-actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.passowrd-recovery-link {
+    font-size: 11px;
+    text-decoration: none;
+    border-bottom: 1px solid #0000008c;
+    line-height: 12px;
+    float: right;
+    margin-top: 2px;
+    height: 13px;
+}
+
+@media (max-width:500px) {
+    .login-form-wrapper {
+        width: calc(100% - 20px);
+    }
+    .app-name {
+        width: 370px;
+        padding-left: 1.4em;
+    }
+}
