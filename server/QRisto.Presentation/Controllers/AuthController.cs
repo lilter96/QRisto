@@ -14,8 +14,7 @@ public class AuthController : ControllerBase
 {
     private readonly IUserService _userService;
 
-    public AuthController(
-        IUserService userService)
+    public AuthController(IUserService userService)
     {
         _userService = userService ?? throw new ArgumentNullException(nameof(userService));
     }

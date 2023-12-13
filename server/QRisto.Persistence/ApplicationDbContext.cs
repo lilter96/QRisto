@@ -10,4 +10,6 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
         : base(options)
     {
     }
+
+    public virtual DbSet<ProviderEntity> Providers { get; set; }
 }

@@ -9,10 +9,12 @@ using Polly;
 using Polly.Extensions.Http;
 using QRisto.Application.Configuration;
 using QRisto.Application.Mappings;
+using QRisto.Application.Services.Provider;
 using QRisto.Application.Services.Token;
 using QRisto.Application.Services.User;
 using QRisto.Persistence;
 using QRisto.Persistence.Entity;
+using QRisto.Persistence.Repositories.Implementations;
 
 Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 var builder = WebApplication.CreateBuilder(args);
@@ -117,6 +119,9 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddSingleton<ITokenService, TokenService>();
 builder.Services.AddAutoMapper(typeof(UserProfile));
+builder.Services.AddTransient<IProviderService, ProviderService>();
+builder.Services.AddScoped<UnitOfWork>();
+
 #endregion
 
 builder.Services.AddControllers();
