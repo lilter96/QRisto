@@ -8,6 +8,9 @@ using Microsoft.OpenApi.Models;
 using Polly;
 using Polly.Extensions.Http;
 using QRisto.Application.Configuration;
+using QRisto.Application.Mappings;
+using QRisto.Application.Services.Token;
+using QRisto.Application.Services.User;
 using QRisto.Persistence;
 using QRisto.Persistence.Entity;
 
@@ -110,6 +113,10 @@ builder.Services.AddSwaggerGen(c =>
 #endregion
 
 #region Services
+
+builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddSingleton<ITokenService, TokenService>();
+builder.Services.AddAutoMapper(typeof(UserProfile));
 #endregion
 
 builder.Services.AddControllers();
