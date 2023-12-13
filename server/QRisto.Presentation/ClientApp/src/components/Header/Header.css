@@ -1,0 +1,25 @@
+.header-wrapper {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.header__nav__links {
+    display: flex;
+    list-style-type: none;
+}
+
+.home, .configuration, .logout {
+    margin-left: 3rem;
+}
+
+.homeLink, .configurationLink, .logoutLink {
+    text-decoration: none;
+    color:black;
+    font-weight: 400;
+    font-family: 'Open Sans';
+}

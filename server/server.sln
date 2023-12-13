@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QRisto.Application", "QRist
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QRisto.Core", "QRisto.Core\QRisto.Core.csproj", "{F4C92B75-568B-4F7E-8E2D-A5AC18834EB5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QRisto.Persistance", "QRisto.Persistance\QRisto.Persistance.csproj", "{3FFA7DD5-E1EF-44AA-B234-FF744DD3CB02}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QRisto.Persistence", "QRisto.Persistence\QRisto.Persistence.csproj", "{3FFA7DD5-E1EF-44AA-B234-FF744DD3CB02}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QRisto.Presentation", "QRisto.Presentation\QRisto.Presentation.csproj", "{09FF106D-5B51-492C-B2ED-C32A297B0983}"
 EndProject
