@@ -423,3 +423,5 @@ fabric.properties
 
 **/obj/
 **/bin/
+**/.idea/
+.idea/

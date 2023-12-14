@@ -11,15 +11,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fe7d8e06-3372-44b4-a200-e1c5657137eb" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.server/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.server/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/config/applicationhost.config" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/config/applicationhost.config" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QRisto.Application/Mappings/UserProfile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/QRisto.Application/Mappings/UserProfile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QRisto.Persistence/ApplicationDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/QRisto.Persistence/ApplicationDbContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QRisto.Persistence/Migrations/ApplicationDbContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/QRisto.Persistence/Migrations/ApplicationDbContextModelSnapshot.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QRisto.Persistence/QRisto.Persistence.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/QRisto.Persistence/QRisto.Persistence.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QRisto.Presentation/Controllers/AuthController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/QRisto.Presentation/Controllers/AuthController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/QRisto.Presentation/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/QRisto.Presentation/Program.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,7 +109,7 @@
       <option name="presentableId" value="Default" />
       <updated>1702464118291</updated>
       <workItem from="1702464119345" duration="225000" />
-      <workItem from="1702464354178" duration="6243000" />
+      <workItem from="1702464354178" duration="8105000" />
     </task>
     <servers />
   </component>
@@ -134,14 +126,7 @@
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/QRisto.Application/Services/Provider/ProviderService.cs</url>
           <line>30</line>
-          <properties documentPath="E:\QRisto\QRisto\server\QRisto.Application\Services\Provider\ProviderService.cs" initialLine="28" containingFunctionPresentation="Method 'CreateAsync'">
-            <startOffsets>
-              <option value="990" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1060" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="E:\QRisto\QRisto\server\QRisto.Application\Services\Provider\ProviderService.cs" initialLine="28" containingFunctionPresentation="Method 'CreateAsync'" />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
