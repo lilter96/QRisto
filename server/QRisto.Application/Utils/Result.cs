@@ -4,8 +4,8 @@ public class Result
 {
     protected Result(bool isSuccess, Error error)
     {
-        if (isSuccess && error != Error.None ||
-            !isSuccess && error == Error.None)
+        if ((isSuccess && error != Error.None) ||
+            (!isSuccess && error == Error.None))
         {
             throw new ArgumentException("Invalid error", nameof(error));
         }
@@ -18,9 +18,32 @@ public class Result
 
     public Error Error { get; }
 
-    public static Result Success() => new(true, Error.None);
+    public static Result Success()
+    {
+        return new Result(true, Error.None);
+    }
 
-    public static Result Failure(Error error) => new(false, error);
+    public static Result Failure(Error error)
+    {
+        return new Result(false, error);
+    }
+
+    public static Result Failure(string message)
+    {
+        return new Result(false, Error.GetUnspecified(message));
+    }
+
+    public static Result Failure(Error error, string details)
+    {
+        error.AddDetails(new List<string> { details });
+        return new Result(false, error);
+    }
+
+    public static Result Failure(Error error, List<string> details)
+    {
+        error.AddDetails(details);
+        return new Result(false, error);
+    }
 }
 
 public class Result<T> : Result
@@ -45,11 +68,15 @@ public class Result<T> : Result
             {
                 throw new InvalidOperationException("Cannot access the value of a failed result.");
             }
+
             return _value!;
         }
     }
 
-    public static Result<T> Success(T value) => new(value);
+    public static Result<T> Success(T value)
+    {
+        return new Result<T>(value);
+    }
 
     public static Result<T> Failure(Error error, List<string> details = null)
     {
@@ -62,6 +89,11 @@ public class Result<T> : Result
         error.AddDetails(new List<string> { details });
         return new Result<T>(error);
     }
+
+    public static Result<T> Failure(string message)
+    {
+        return new Result<T>(Error.GetUnspecified(message));
+    }
 }
 
 public static class ResultExtensions
@@ -72,5 +104,13 @@ public static class ResultExtensions
         Func<Error, T> onFailure)
     {
         return result.IsSuccess ? onSuccess(result.Value) : onFailure(result.Error);
+    }
+
+    public static T Match<T>(
+        this Result result,
+        Func<T> onSuccess,
+        Func<Error, T> onFailure)
+    {
+        return result.IsSuccess ? onSuccess() : onFailure(result.Error);
     }
 }

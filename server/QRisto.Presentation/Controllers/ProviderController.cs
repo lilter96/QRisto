@@ -7,6 +7,9 @@ using QRisto.Application.Utils;
 
 namespace QRisto.Presentation.Controllers;
 
+[Authorize]
+[Route("provider")]
+[Authorize(Roles = "admin")]
 public class ProviderController : ControllerBase
 {
     private readonly IProviderService _providerService;
@@ -17,7 +20,6 @@ public class ProviderController : ControllerBase
     }
 
     [HttpPost]
-    [Authorize]
     [Route("create", Name = "CreateProvider")]
     [ProducesResponseType(typeof(ProviderResponse), 201)]
     public async Task<IActionResult> Create(ProviderPostRequest providerPostRequest)
@@ -25,7 +27,7 @@ public class ProviderController : ControllerBase
         var result = await _providerService.CreateAsync(providerPostRequest);
 
         return result.Match<IActionResult, ProviderResponse>(
-            onSuccess: x => StatusCode(StatusCodes.Status201Created, x),
-            onFailure: BadRequest);
+            x => StatusCode(StatusCodes.Status201Created, x),
+            BadRequest);
     }
 }

@@ -33,7 +33,7 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 #region Identity
 
-builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+builder.Services.AddIdentity<ApplicationUser, ApplicationRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
 

@@ -25,11 +25,11 @@ public class AuthController : ControllerBase
     {
         var result = await _userService.RegisterAsync(registerUserDto);
 
-        return result.Match<IActionResult, LoginResponseModel>(
-            onSuccess: Ok,
-            onFailure: BadRequest);
+        return result.Match<IActionResult>(
+            Ok,
+            BadRequest);
     }
-    
+
     [HttpPost]
     [Route("login")]
     public async Task<IActionResult> Login(LoginRequestModel loginUserDto)
@@ -37,10 +37,10 @@ public class AuthController : ControllerBase
         var result = await _userService.LoginAsync(loginUserDto);
 
         return result.Match<IActionResult, LoginResponseModel>(
-            onSuccess: Ok,
-            onFailure: BadRequest);
+            Ok,
+            BadRequest);
     }
-    
+
     [HttpPost]
     [Route("refresh-token")]
     public async Task<IActionResult> GenerateToken(RefreshAccessTokenRequest refreshTokenDto)
@@ -48,7 +48,7 @@ public class AuthController : ControllerBase
         var result = await _userService.RefreshTokenAsync(refreshTokenDto);
 
         return result.Match<IActionResult, LoginResponseModel>(
-            onSuccess: Ok,
-            onFailure: error => StatusCode(StatusCodes.Status500InternalServerError, error));
+            Ok,
+            error => StatusCode(StatusCodes.Status500InternalServerError, error));
     }
 }

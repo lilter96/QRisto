@@ -8,7 +8,7 @@ public interface IUserService
 {
     public Task<Result<LoginResponseModel>> LoginAsync(LoginRequestModel loginUserDto);
 
-    public Task<Result<LoginResponseModel>> RegisterAsync(RegisterRequestModel registerUserDto);
+    public Task<Result> RegisterAsync(RegisterRequestModel registerUserModel);
 
     public Task<Result<LoginResponseModel>> RefreshTokenAsync(RefreshAccessTokenRequest refreshTokenDto);
 }

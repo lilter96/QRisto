@@ -11,10 +11,15 @@ public sealed class Error
     }
 
     public string Code { get; init; }
-    
+
     public string Description { get; init; }
-    
+
     public List<string> Details { get; set; }
+
+    public static Error GetUnspecified(string description = null)
+    {
+        return new Error("Unspecified", description);
+    }
 
     public void AddDetails(List<string> details)
     {

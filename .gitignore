@@ -425,3 +425,5 @@ fabric.properties
 **/bin/
 **/.idea/
 .idea/
+**/tools/
+tools/

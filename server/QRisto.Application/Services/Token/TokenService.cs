@@ -1,9 +1,9 @@
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
-using QRisto.Application.Configuration;
-using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
+using QRisto.Application.Configuration;
 
 namespace QRisto.Application.Services.Token;
 
@@ -19,7 +19,9 @@ public class TokenService : ITokenService
     public string GenerateAccessToken(IEnumerable<Claim> claims)
     {
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtOptions.SigningKey));
-        var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);
+        var credentials = new SigningCredentials(
+            key,
+            SecurityAlgorithms.HmacSha256Signature);
 
         var securityToken = new JwtSecurityToken(
             claims: claims,
@@ -38,7 +40,7 @@ public class TokenService : ITokenService
         rng.GetBytes(randomNumber);
         return Convert.ToBase64String(randomNumber);
     }
-    
+
     public ClaimsPrincipal GetPrincipalFromExpiredToken(string token)
     {
         var tokenValidationParameters = new TokenValidationParameters
@@ -51,9 +53,13 @@ public class TokenService : ITokenService
         };
 
         var tokenHandler = new JwtSecurityTokenHandler();
-        var principal = tokenHandler.ValidateToken(token, tokenValidationParameters, out SecurityToken securityToken);
+        var principal = tokenHandler.ValidateToken(
+            token,
+            tokenValidationParameters,
+            out var securityToken);
         if (securityToken is not JwtSecurityToken jwtSecurityToken ||
-            !jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256Signature,
+            !jwtSecurityToken.Header.Alg.Equals(
+                SecurityAlgorithms.HmacSha256Signature,
                 StringComparison.InvariantCultureIgnoreCase))
         {
             throw new SecurityTokenException("Invalid token");
