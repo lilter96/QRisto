@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using QRisto.Persistence;
 
@@ -11,9 +12,11 @@ using QRisto.Persistence;
 namespace QRisto.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231215133917_AddTablesAndReservations")]
+    partial class AddTablesAndReservations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -104,13 +107,6 @@ namespace QRisto.Persistence.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = new Guid("42bcfbc1-3c3b-4dbc-97c5-41d8ab5325da"),
-                            RoleId = new Guid("a652e256-5977-4ebc-8ac1-a17ed049d1b6")
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
@@ -167,35 +163,6 @@ namespace QRisto.Persistence.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("a652e256-5977-4ebc-8ac1-a17ed049d1b6"),
-                            ChangedAt = new DateTime(2023, 12, 15, 20, 38, 17, 784, DateTimeKind.Utc).AddTicks(8592),
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ModificationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Admin",
-                            NormalizedName = "ADMIN"
-                        },
-                        new
-                        {
-                            Id = new Guid("fd241037-441b-422c-9985-c981aba67037"),
-                            ChangedAt = new DateTime(2023, 12, 15, 20, 38, 17, 784, DateTimeKind.Utc).AddTicks(8605),
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ModificationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Provider",
-                            NormalizedName = "PROVIDER"
-                        },
-                        new
-                        {
-                            Id = new Guid("17bc30dc-8137-40b5-b337-ac2e3b810be0"),
-                            ChangedAt = new DateTime(2023, 12, 15, 20, 38, 17, 784, DateTimeKind.Utc).AddTicks(8607),
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ModificationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Default",
-                            NormalizedName = "DEFAULT"
-                        });
                 });
 
             modelBuilder.Entity("QRisto.Persistence.Entity.Auth.ApplicationUser", b =>
@@ -277,27 +244,6 @@ namespace QRisto.Persistence.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("42bcfbc1-3c3b-4dbc-97c5-41d8ab5325da"),
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "917c30bb-f5cf-459b-a378-deb5c39e8520",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "admin@example.com",
-                            EmailConfirmed = true,
-                            LockoutEnabled = false,
-                            ModificationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            NormalizedEmail = "ADMIN@EXAMPLE.COM",
-                            NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEMQxZEQGNkBh8s2O0MB3Gl2Bk8M/PQajyIhKCkUeoU8XBOKOVhrQYEorqZ21Df6TBg==",
-                            PhoneNumberConfirmed = false,
-                            RefreshTokenExpiryTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SecurityStamp = "47040ff7-7559-4f37-8128-93361a2861cb",
-                            TwoFactorEnabled = false,
-                            UserName = "admin"
-                        });
                 });
 
             modelBuilder.Entity("QRisto.Persistence.Entity.Provider.AddressEntity", b =>
@@ -342,38 +288,6 @@ namespace QRisto.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Addresses");
-                });
-
-            modelBuilder.Entity("QRisto.Persistence.Entity.Provider.OperatingScheduleEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("AdditionalInfo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateOnly>("Date")
-                        .HasColumnType("date");
-
-                    b.Property<bool>("IsWorkingDay")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("ModificationDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("ServiceId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ServiceId", "Date")
-                        .IsUnique();
-
-                    b.ToTable("OperatingSchedules");
                 });
 
             modelBuilder.Entity("QRisto.Persistence.Entity.Provider.ProviderEntity", b =>
@@ -478,7 +392,7 @@ namespace QRisto.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("AddressId")
+                    b.Property<Guid>("AddressId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Code")
@@ -559,39 +473,6 @@ namespace QRisto.Persistence.Migrations
                     b.ToTable("Tables");
                 });
 
-            modelBuilder.Entity("QRisto.Persistence.Entity.Provider.WorkingIntervalEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<TimeOnly>("EndTime")
-                        .HasColumnType("time");
-
-                    b.Property<DateTime>("ModificationDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("OperatingScheduleId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<TimeOnly>("StartTime")
-                        .HasColumnType("time");
-
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OperatingScheduleId", "StartTime", "EndTime")
-                        .IsUnique();
-
-                    b.ToTable("WorkingIntervals");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
                 {
                     b.HasOne("QRisto.Persistence.Entity.Auth.ApplicationRole", null)
@@ -643,17 +524,6 @@ namespace QRisto.Persistence.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("QRisto.Persistence.Entity.Provider.OperatingScheduleEntity", b =>
-                {
-                    b.HasOne("QRisto.Persistence.Entity.Provider.ServiceEntity", "Service")
-                        .WithMany()
-                        .HasForeignKey("ServiceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Service");
-                });
-
             modelBuilder.Entity("QRisto.Persistence.Entity.Provider.ReservationDetailsEntity", b =>
                 {
                     b.HasOne("QRisto.Persistence.Entity.Provider.ReservationEntity", "Reservation")
@@ -680,7 +550,9 @@ namespace QRisto.Persistence.Migrations
                 {
                     b.HasOne("QRisto.Persistence.Entity.Provider.AddressEntity", "Address")
                         .WithMany()
-                        .HasForeignKey("AddressId");
+                        .HasForeignKey("AddressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("QRisto.Persistence.Entity.Provider.ProviderEntity", "Provider")
                         .WithMany("Services")
@@ -702,22 +574,6 @@ namespace QRisto.Persistence.Migrations
                         .IsRequired();
 
                     b.Navigation("Service");
-                });
-
-            modelBuilder.Entity("QRisto.Persistence.Entity.Provider.WorkingIntervalEntity", b =>
-                {
-                    b.HasOne("QRisto.Persistence.Entity.Provider.OperatingScheduleEntity", "OperatingSchedule")
-                        .WithMany("WorkingIntervals")
-                        .HasForeignKey("OperatingScheduleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("OperatingSchedule");
-                });
-
-            modelBuilder.Entity("QRisto.Persistence.Entity.Provider.OperatingScheduleEntity", b =>
-                {
-                    b.Navigation("WorkingIntervals");
                 });
 
             modelBuilder.Entity("QRisto.Persistence.Entity.Provider.ProviderEntity", b =>
