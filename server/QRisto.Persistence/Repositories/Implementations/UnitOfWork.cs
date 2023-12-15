@@ -1,4 +1,5 @@
 using QRisto.Persistence.Entity;
+using QRisto.Persistence.Entity.Provider;
 
 namespace QRisto.Persistence.Repositories.Implementations;
 

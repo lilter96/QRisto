@@ -9,6 +9,7 @@ using QRisto.Application.Services.Token;
 using QRisto.Application.Utils;
 using QRisto.Persistence;
 using QRisto.Persistence.Entity;
+using QRisto.Persistence.Entity.Auth;
 
 namespace QRisto.Application.Services.User;
 
