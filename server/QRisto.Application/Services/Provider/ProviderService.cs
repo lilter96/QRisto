@@ -6,6 +6,7 @@ using QRisto.Application.Models.Response.Provider;
 using QRisto.Application.Utils;
 using QRisto.Persistence;
 using QRisto.Persistence.Entity;
+using QRisto.Persistence.Entity.Provider;
 using QRisto.Persistence.Repositories.Implementations;
 
 namespace QRisto.Application.Services.Provider;

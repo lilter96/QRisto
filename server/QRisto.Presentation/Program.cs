@@ -14,6 +14,7 @@ using QRisto.Application.Services.Token;
 using QRisto.Application.Services.User;
 using QRisto.Persistence;
 using QRisto.Persistence.Entity;
+using QRisto.Persistence.Entity.Auth;
 using QRisto.Persistence.Repositories.Implementations;
 
 Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
