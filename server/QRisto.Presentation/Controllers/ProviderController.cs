@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using QRisto.Application.Models.Request.Provider;
 using QRisto.Application.Models.Response.Provider;
@@ -7,9 +6,7 @@ using QRisto.Application.Utils;
 
 namespace QRisto.Presentation.Controllers;
 
-[Authorize]
-[Route("provider")]
-[Authorize(Roles = "admin")]
+[Route("api/provider")]
 public class ProviderController : ControllerBase
 {
     private readonly IProviderService _providerService;
@@ -20,14 +17,15 @@ public class ProviderController : ControllerBase
     }
 
     [HttpPost]
-    [Route("create", Name = "CreateProvider")]
     [ProducesResponseType(typeof(ProviderResponse), 201)]
     public async Task<IActionResult> Create(ProviderPostRequest providerPostRequest)
     {
         var result = await _providerService.CreateAsync(providerPostRequest);
 
         return result.Match<IActionResult, ProviderResponse>(
-            x => StatusCode(StatusCodes.Status201Created, x),
+            x => StatusCode(
+                StatusCodes.Status201Created,
+                x),
             BadRequest);
     }
 }

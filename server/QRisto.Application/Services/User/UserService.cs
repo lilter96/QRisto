@@ -7,19 +7,18 @@ using QRisto.Application.Models.Request.User;
 using QRisto.Application.Models.Response.User;
 using QRisto.Application.Services.Token;
 using QRisto.Application.Utils;
-using QRisto.Persistence;
-using QRisto.Persistence.Entity;
 using QRisto.Persistence.Entity.Auth;
+using QRisto.Persistence.Repositories.Implementations;
 
 namespace QRisto.Application.Services.User;
 
 public class UserService : IUserService
 {
-    private readonly ApplicationDbContext _dbContext;
     private readonly JwtOptions _jwtOptions;
     private readonly IMapper _mapper;
     private readonly RoleManager<ApplicationRole> _roleManager;
     private readonly ITokenService _tokenService;
+    private readonly UnitOfWork _unitOfWork;
     private readonly UserManager<ApplicationUser> _userManager;
 
     public UserService(
@@ -28,14 +27,14 @@ public class UserService : IUserService
         IMapper mapper,
         JwtOptions jwtOptions,
         RoleManager<ApplicationRole> roleManager,
-        ApplicationDbContext dbContext)
+        UnitOfWork unitOfWork)
     {
         _tokenService = tokenService ?? throw new ArgumentNullException(nameof(tokenService));
         _userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
         _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         _jwtOptions = jwtOptions ?? throw new ArgumentNullException(nameof(jwtOptions));
         _roleManager = roleManager ?? throw new ArgumentNullException(nameof(roleManager));
-        _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
+        _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
     }
 
     public async Task<Result<LoginResponseModel>> LoginAsync(LoginRequestModel loginRequestModel)
@@ -137,7 +136,7 @@ public class UserService : IUserService
 
     public async Task<Result> RegisterAsync(RegisterRequestModel registerUserModel)
     {
-        await using var transaction = await _dbContext.Database.BeginTransactionAsync();
+        await _unitOfWork.BeginTransactionAsync();
         try
         {
             var user = _mapper.Map<ApplicationUser>(registerUserModel);
@@ -173,7 +172,7 @@ public class UserService : IUserService
                 user,
                 roleName);
 
-            await transaction.CommitAsync();
+            await _unitOfWork.CommitTransactionAsync();
 
             return !addToRoleResult.Succeeded
                 ? GetFailureResultFromIdentityResult(
@@ -183,7 +182,7 @@ public class UserService : IUserService
         }
         catch (Exception ex)
         {
-            await transaction.RollbackAsync();
+            await _unitOfWork.RollbackTransactionAsync();
             return Result.Failure(
                 UserErrors.UnableRegister,
                 ex.ToString());

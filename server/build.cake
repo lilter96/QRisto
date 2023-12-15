@@ -24,7 +24,7 @@ Task("Build")
         settings.SetConfiguration(buildConfiguration));
 });
 
-Task("Prepare-Client-Dev")
+Task("ClientStart")
     .Does(() =>
 {
     StartProcess("cmd", new ProcessSettings 
@@ -58,7 +58,7 @@ Task("Build-Client")
 
 Task("RunDev")
     .IsDependentOn("Build")
-    .IsDependentOn("Prepare-Client-Dev")
+    .IsDependentOn("ClientStart")
     .Does(() =>
 {
     var projectPath = "./QRisto.Presentation";
