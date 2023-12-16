@@ -1,4 +1,3 @@
-using System.Net;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -6,18 +5,18 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Net.Http.Headers;
 using Microsoft.OpenApi.Models;
-using Polly;
-using Polly.Extensions.Http;
 using QRisto.Application.Configuration;
 using QRisto.Application.Mappings;
 using QRisto.Application.Services.Provider;
 using QRisto.Application.Services.Reservation;
 using QRisto.Application.Services.Service;
+using QRisto.Application.Services.Table;
 using QRisto.Application.Services.Token;
 using QRisto.Application.Services.User;
 using QRisto.Persistence;
 using QRisto.Persistence.Entity.Auth;
 using QRisto.Persistence.Repositories.Implementations;
+using QRisto.Presentation.ClientApp;
 
 Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 var builder = WebApplication.CreateBuilder(args);
@@ -139,6 +138,7 @@ builder.Services.AddAutoMapper(typeof(UserProfile));
 builder.Services.AddTransient<IProviderService, ProviderService>();
 builder.Services.AddTransient<IReservationService, ReservationService>();
 builder.Services.AddTransient<IServiceService, ServiceService>();
+builder.Services.AddTransient<ITableService, TableService>();
 builder.Services.AddScoped<UnitOfWork>();
 
 #endregion
@@ -172,6 +172,31 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseCors();
+
+app.Use(
+    async (context, next) =>
+    {
+        const string authKey = "Authorization";
+
+        if (!context.Request.Headers.ContainsKey(authKey))
+        {
+            var cookieToken = context.Request.Cookies[AuthOptions.CookieName];
+
+            if (cookieToken != null)
+            {
+                context.Request.Headers.Add(authKey, $"Bearer {cookieToken}");
+            }
+            else
+            {
+                if (context.Request.Query.TryGetValue(authKey, out var queryTokens) && queryTokens is [{ } queryToken])
+                {
+                    context.Request.Headers.Add(authKey, $"Bearer {queryToken}");
+                }
+            }
+        }
+
+        await next();
+    });
 app.UseAuthentication();
 app.UseAuthorization();
 
@@ -226,11 +251,3 @@ else
 }
 
 app.Run();
-
-static IAsyncPolicy<HttpResponseMessage> GetRetryPolicy()
-{
-    return HttpPolicyExtensions
-        .HandleTransientHttpError()
-        .OrResult(msg => msg.StatusCode == HttpStatusCode.NotFound)
-        .WaitAndRetryAsync(6, retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt)));
-}

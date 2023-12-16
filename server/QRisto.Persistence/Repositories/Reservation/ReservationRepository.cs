@@ -38,7 +38,7 @@ public class ReservationRepository : GenericRepository<ReservationEntity>, IRese
             return false;
         }
 
-        reservation.Status = ReservationStatus.Declined;
+        reservation.Status = ReservationStatus.Cancelled;
         await Context.SaveChangesAsync();
         return true;
     }
@@ -53,11 +53,15 @@ public class ReservationRepository : GenericRepository<ReservationEntity>, IRese
         }
     }
 
-    public async Task<List<ReservationEntity>> GetReservationsForDayAsync(Guid serviceId, DateOnly date)
+    public async Task<List<ReservationEntity>> GetTableReservationsForDayAsync(
+        Guid tableId,
+        DateOnly date)
     {
         var targetDate = date.ToDateTime(new TimeOnly());
 
-        var query = DbSet.Where(reservation => reservation.ReservationTime.Date == targetDate);
+        var query = DbSet
+            .Where(reservation => reservation.TableId == tableId)
+            .Where(reservation => reservation.ReservationTime.Date == targetDate);
 
         return await query.ToListAsync();
     }

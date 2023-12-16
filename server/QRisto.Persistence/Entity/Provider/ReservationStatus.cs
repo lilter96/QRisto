@@ -5,5 +5,5 @@ public enum ReservationStatus
     Created,
     Approved,
     Declined,
-    Deleted
+    Cancelled
 }
