@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace QRisto.Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class Initital : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -386,20 +386,20 @@ namespace QRisto.Persistence.Migrations
                 columns: new[] { "Id", "ChangedAt", "ConcurrencyStamp", "CreatedDate", "DeletedBy", "DeletedDate", "ModificationDate", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { new Guid("af58c151-268b-441e-85e6-26c9f172d659"), new DateTime(2023, 12, 16, 18, 26, 57, 471, DateTimeKind.Utc).AddTicks(4177), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Admin", "ADMIN" },
-                    { new Guid("d332d990-7e07-468d-9265-fa377f2d9d5e"), new DateTime(2023, 12, 16, 18, 26, 57, 471, DateTimeKind.Utc).AddTicks(4200), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Default", "DEFAULT" },
-                    { new Guid("e4f667bf-35d0-4254-8a8e-7b8866db0fe9"), new DateTime(2023, 12, 16, 18, 26, 57, 471, DateTimeKind.Utc).AddTicks(4198), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Provider", "PROVIDER" }
+                    { new Guid("042a9760-e09b-4043-ae26-9c3eb5b693d5"), new DateTime(2023, 12, 16, 19, 46, 10, 257, DateTimeKind.Utc).AddTicks(6983), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Admin", "ADMIN" },
+                    { new Guid("6854d47e-833d-4b16-8298-8c5976315366"), new DateTime(2023, 12, 16, 19, 46, 10, 257, DateTimeKind.Utc).AddTicks(6997), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Default", "DEFAULT" },
+                    { new Guid("9e63669b-8417-4b92-8268-44787689e272"), new DateTime(2023, 12, 16, 19, 46, 10, 257, DateTimeKind.Utc).AddTicks(6995), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Provider", "PROVIDER" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "AccessToken", "ConcurrencyStamp", "CreatedDate", "DeletedBy", "DeletedDate", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "ModificationDate", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "RefreshToken", "RefreshTokenExpiryTime", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { new Guid("72fee3b1-85ab-4923-b4b1-98ab69a25152"), 0, null, "0cc15592-3422-460a-84ad-b16a441ed57b", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, null, "admin@example.com", true, false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "ADMIN@EXAMPLE.COM", "ADMIN", "AQAAAAIAAYagAAAAEN8aWC9lzvrjnr2cVtMjsyE+2BKilFZU3vEYot7LxffN3pxKkyDBwx72oFclSRPtCA==", null, false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "9b419c0e-821b-4255-8801-54ce0df55c69", false, "admin" });
+                values: new object[] { new Guid("17043a77-6320-4401-9cae-d4197798e395"), 0, null, "4cddb8c6-b85f-42de-8cf8-dbf157f2a73e", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), null, null, "admin@example.com", true, false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "ADMIN@EXAMPLE.COM", "ADMIN", "AQAAAAIAAYagAAAAEB9LqvvZa5r7tLWX2hPq83oSb5MVhnCcNYSm+1VbqKNjI6uZSbSvIVf3ZoqgHiZT8g==", null, false, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "f715f502-0ed6-4f30-a762-ac47ddc6fd86", false, "admin" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
                 columns: new[] { "RoleId", "UserId" },
-                values: new object[] { new Guid("af58c151-268b-441e-85e6-26c9f172d659"), new Guid("72fee3b1-85ab-4923-b4b1-98ab69a25152") });
+                values: new object[] { new Guid("042a9760-e09b-4043-ae26-9c3eb5b693d5"), new Guid("17043a77-6320-4401-9cae-d4197798e395") });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

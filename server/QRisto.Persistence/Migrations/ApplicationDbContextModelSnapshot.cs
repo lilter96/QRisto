@@ -108,8 +108,8 @@ namespace QRisto.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = new Guid("72fee3b1-85ab-4923-b4b1-98ab69a25152"),
-                            RoleId = new Guid("af58c151-268b-441e-85e6-26c9f172d659")
+                            UserId = new Guid("17043a77-6320-4401-9cae-d4197798e395"),
+                            RoleId = new Guid("042a9760-e09b-4043-ae26-9c3eb5b693d5")
                         });
                 });
 
@@ -177,28 +177,28 @@ namespace QRisto.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("af58c151-268b-441e-85e6-26c9f172d659"),
-                            ChangedAt = new DateTime(2023, 12, 16, 18, 26, 57, 471, DateTimeKind.Utc).AddTicks(4177),
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ModificationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Id = new Guid("042a9760-e09b-4043-ae26-9c3eb5b693d5"),
+                            ChangedAt = new DateTime(2023, 12, 16, 19, 46, 10, 257, DateTimeKind.Utc).AddTicks(6983),
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ModificationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = new Guid("e4f667bf-35d0-4254-8a8e-7b8866db0fe9"),
-                            ChangedAt = new DateTime(2023, 12, 16, 18, 26, 57, 471, DateTimeKind.Utc).AddTicks(4198),
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ModificationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Id = new Guid("9e63669b-8417-4b92-8268-44787689e272"),
+                            ChangedAt = new DateTime(2023, 12, 16, 19, 46, 10, 257, DateTimeKind.Utc).AddTicks(6995),
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ModificationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Name = "Provider",
                             NormalizedName = "PROVIDER"
                         },
                         new
                         {
-                            Id = new Guid("d332d990-7e07-468d-9265-fa377f2d9d5e"),
-                            ChangedAt = new DateTime(2023, 12, 16, 18, 26, 57, 471, DateTimeKind.Utc).AddTicks(4200),
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            ModificationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Id = new Guid("6854d47e-833d-4b16-8298-8c5976315366"),
+                            ChangedAt = new DateTime(2023, 12, 16, 19, 46, 10, 257, DateTimeKind.Utc).AddTicks(6997),
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ModificationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Name = "Default",
                             NormalizedName = "DEFAULT"
                         });
@@ -293,20 +293,20 @@ namespace QRisto.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("72fee3b1-85ab-4923-b4b1-98ab69a25152"),
+                            Id = new Guid("17043a77-6320-4401-9cae-d4197798e395"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0cc15592-3422-460a-84ad-b16a441ed57b",
-                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ConcurrencyStamp = "4cddb8c6-b85f-42de-8cf8-dbf157f2a73e",
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Email = "admin@example.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
-                            ModificationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ModificationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             NormalizedEmail = "ADMIN@EXAMPLE.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEN8aWC9lzvrjnr2cVtMjsyE+2BKilFZU3vEYot7LxffN3pxKkyDBwx72oFclSRPtCA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEB9LqvvZa5r7tLWX2hPq83oSb5MVhnCcNYSm+1VbqKNjI6uZSbSvIVf3ZoqgHiZT8g==",
                             PhoneNumberConfirmed = false,
-                            RefreshTokenExpiryTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SecurityStamp = "9b419c0e-821b-4255-8801-54ce0df55c69",
+                            RefreshTokenExpiryTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            SecurityStamp = "f715f502-0ed6-4f30-a762-ac47ddc6fd86",
                             TwoFactorEnabled = false,
                             UserName = "admin"
                         });

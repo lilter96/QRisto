@@ -1,11 +1,12 @@
 using System.Linq.Expressions;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using QRisto.Persistence.Converters;
 using QRisto.Persistence.Entity;
 using QRisto.Persistence.Entity.Auth;
 using QRisto.Persistence.Entity.Provider;
+using QRisto.Persistence.Seed;
 
 namespace QRisto.Persistence;
 
@@ -40,8 +41,8 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, Applicati
 
         foreach (var entry in added.Where(entry => entry is IEntity))
         {
-            ((IEntity)entry).CreatedDate = DateTime.UtcNow;
-            ((IEntity)entry).ModificationDate = DateTime.UtcNow;
+            ((IEntity)entry).CreatedDate = DateTime.SpecifyKind(DateTime.UtcNow, DateTimeKind.Utc);
+            ((IEntity)entry).ModificationDate = DateTime.SpecifyKind(DateTime.UtcNow, DateTimeKind.Utc);
         }
 
         var updated = ChangeTracker.Entries().Where(w => w.State == EntityState.Modified).Select(s => s.Entity)
@@ -49,7 +50,7 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, Applicati
 
         foreach (var entry in updated.OfType<IEntity>())
         {
-            entry.ModificationDate = DateTime.UtcNow;
+            entry.ModificationDate = DateTime.SpecifyKind(DateTime.UtcNow, DateTimeKind.Utc);
         }
 
         return base.SaveChanges();
@@ -127,69 +128,25 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, Applicati
         foreach (var entityType in builder.Model.GetEntityTypes())
         {
             var deletedTimeProperty = entityType.FindProperty("DeletedDate");
-            if (deletedTimeProperty != null && deletedTimeProperty.ClrType == typeof(DateTime?))
+            if (deletedTimeProperty == null || deletedTimeProperty.ClrType != typeof(DateTime?))
             {
-                var parameter = Expression.Parameter(entityType.ClrType);
-                var property = Expression.Property(parameter, deletedTimeProperty.PropertyInfo!);
-                var condition = Expression.Equal(property, Expression.Constant(null, typeof(DateTime?)));
-                var lambda = Expression.Lambda(condition, parameter);
-
-                var entityMethod = typeof(ModelBuilder).GetMethods()
-                    .Single(m => m.Name == "Entity" && m.GetParameters().Length == 0)
-                    .MakeGenericMethod(entityType.ClrType);
-                var entityBuilder = entityMethod.Invoke(builder, null) as EntityTypeBuilder;
-                entityBuilder?.HasQueryFilter(lambda);
+                continue;
             }
+
+            var parameter = Expression.Parameter(entityType.ClrType);
+            var property = Expression.Property(parameter, deletedTimeProperty.PropertyInfo!);
+            var condition = Expression.Equal(property, Expression.Constant(null, typeof(DateTime?)));
+            var lambda = Expression.Lambda(condition, parameter);
+
+            var entityMethod = typeof(ModelBuilder).GetMethods()
+                .Single(m => m.Name == "Entity" && m.GetParameters().Length == 0)
+                .MakeGenericMethod(entityType.ClrType);
+            var entityBuilder = entityMethod.Invoke(builder, null) as EntityTypeBuilder;
+            entityBuilder?.HasQueryFilter(lambda);
         }
         
-        Seed(builder);
-    }
-
-    private void Seed(ModelBuilder builder)
-    {
-        var adminRoleId = Guid.NewGuid();
-
-        builder.Entity<ApplicationRole>().HasData(
-            new ApplicationRole
-            {
-                Id = adminRoleId,
-                Name = ApplicationRoles.Admin,
-                NormalizedName = ApplicationRoles.Admin.ToUpper()
-            },
-            new ApplicationRole
-            {
-                Id = Guid.NewGuid(),
-                Name = ApplicationRoles.Provider,
-                NormalizedName = ApplicationRoles.Provider.ToUpper()
-            },
-            new ApplicationRole
-            {
-                Id = Guid.NewGuid(),
-                Name = ApplicationRoles.Default,
-                NormalizedName = ApplicationRoles.Default.ToUpper()
-            }
-        );
-
-        var adminUserId = Guid.NewGuid();
-        var adminUser = new ApplicationUser
-        {
-            Id = adminUserId,
-            UserName = "admin",
-            NormalizedUserName = "ADMIN",
-            Email = "admin@example.com",
-            NormalizedEmail = "ADMIN@EXAMPLE.COM",
-            SecurityStamp = Guid.NewGuid().ToString(),
-            EmailConfirmed = true,
-            LockoutEnabled = false
-        };
-
-        var passwordHasher = new PasswordHasher<ApplicationUser>();
-        adminUser.PasswordHash = passwordHasher.HashPassword(adminUser, "admin");
-
-        builder.Entity<ApplicationUser>().HasData(adminUser);
-
-        builder.Entity<IdentityUserRole<Guid>>().HasData(
-            new IdentityUserRole<Guid> { RoleId = adminRoleId, UserId = adminUserId }
-        );
+        SeedData.Seed(builder);
+        
+        builder.ApplyUtcDateTimeConverter();
     }
 }
