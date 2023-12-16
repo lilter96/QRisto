@@ -1,17 +1,7 @@
-namespace QRisto.Persistence.Entity.Provider;
+namespace QRisto.Application.Models.Response.Address;
 
-public class AddressEntity : IEntity
+public class AddressGetResponse
 {
-    public Guid Id { get; set; }
-    
-    public Guid DeletedBy { get; set; }
-    
-    public DateTime CreatedDate { get; set; }
-    
-    public DateTime? DeletedDate { get; set; }
-
-    public DateTime ModificationDate { get; set; }
-    
     public string Name { get; set; }
     
     public string Country { get; set; }

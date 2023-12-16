@@ -59,6 +59,7 @@ var jwtOptions = builder.Configuration
     .Get<JwtOptions>();
 
 builder.Services.AddSingleton(jwtOptions!);
+builder.Services.AddHttpContextAccessor();
 
 builder.Services
     .AddAuthentication(

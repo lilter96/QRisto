@@ -17,8 +17,12 @@ public class ReservationEntity : IEntity
     public ReservationStatus Status { get; set; }
 
     public Guid Id { get; set; }
+    
+    public Guid DeletedBy { get; set; }
 
     public DateTime CreatedDate { get; set; }
+    
+    public DateTime? DeletedDate { get; set; }
 
     public DateTime ModificationDate { get; set; }
 }

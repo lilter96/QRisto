@@ -9,7 +9,7 @@ public class GenericRepository<TEntity> where TEntity : class, IEntity
     internal readonly ApplicationDbContext Context;
     internal readonly DbSet<TEntity> DbSet;
 
-    public GenericRepository(ApplicationDbContext context)
+    protected GenericRepository(ApplicationDbContext context)
     {
         Context = context;
         DbSet = context.Set<TEntity>();
@@ -58,20 +58,23 @@ public class GenericRepository<TEntity> where TEntity : class, IEntity
         await Context.SaveChangesAsync();
     }
 
-    public async Task DeleteAsync(object id)
+    public async Task DeleteAsync(object id, Guid userId)
     {
         var entityToDelete = await DbSet.FindAsync(id);
-        Delete(entityToDelete);
+        Delete(entityToDelete, userId);
     }
 
-    public void Delete(TEntity entityToDelete)
+    public void Delete(TEntity entityToDelete, Guid userId)
     {
         if (Context.Entry(entityToDelete).State == EntityState.Detached)
         {
             DbSet.Attach(entityToDelete);
         }
 
-        DbSet.Remove(entityToDelete);
+        entityToDelete.DeletedBy = userId;
+        entityToDelete.DeletedDate = DateTime.UtcNow;
+        
+        DbSet.Update(entityToDelete);
     }
 
     public void Update(TEntity entityToUpdate)
