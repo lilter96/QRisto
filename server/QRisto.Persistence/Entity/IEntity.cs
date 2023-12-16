@@ -4,7 +4,7 @@ public interface IEntity
 {
     Guid Id { get; set; }
     
-    Guid DeletedBy { get; set; }
+    Guid? DeletedBy { get; set; }
 
     DateTime CreatedDate { get; set; }
 

@@ -2,12 +2,12 @@
 
 var target = Argument("target", "Default");
 var buildConfiguration = Argument("configuration", "Release");
-var clientProjectPath = "./QRisto.Presentation/ClientApp";
+var clientProjectPath = "./server/QRisto.Presentation/ClientApp";
 
 Task("Clean")
     .Does(() =>
 {
-    CleanDirectory($"./{buildConfiguration}");
+    CleanDirectory($"./server/{buildConfiguration}");
 });
 
 Task("Restore-NuGet-Packages")
@@ -61,12 +61,12 @@ Task("RunDev")
     .IsDependentOn("ClientStart")
     .Does(() =>
 {
-    var projectPath = "./QRisto.Presentation";
+    var projectPath = "./server/QRisto.Presentation";
 
     StartProcess("dotnet", new ProcessSettings 
     {
         Arguments = $"run --project {projectPath} --launch-profile \"Kestrel Development\"",
-        WorkingDirectory = System.IO.Path.GetDirectoryName(projectPath)
+        WorkingDirectory = "./"
     });
 });
 
@@ -75,12 +75,12 @@ Task("RunProd")
     .IsDependentOn("Build-Client")
     .Does(() =>
 {
-    var projectPath = "./QRisto.Presentation";
+    var projectPath = "./server/QRisto.Presentation";
 
     StartProcess("dotnet", new ProcessSettings 
     {
         Arguments = $"run --project {projectPath} --launch-profile \"Kestrel Production\"",
-        WorkingDirectory = System.IO.Path.GetDirectoryName(projectPath)
+        WorkingDirectory = "./"
     });
 });
 
