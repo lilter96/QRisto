@@ -2,6 +2,8 @@ namespace QRisto.Persistence.Entity.Provider;
 
 public class TableEntity : IEntity
 {
+    public string Name { get; set; }
+
     public int Seats { get; set; }
 
     public double LocationX { get; set; }
@@ -11,6 +13,7 @@ public class TableEntity : IEntity
     public double Rotation { get; set; }
 
     public Guid ServiceId { get; set; }
+
     public ServiceEntity Service { get; set; }
 
     public virtual ICollection<ReservationEntity> Reservations { get; set; }

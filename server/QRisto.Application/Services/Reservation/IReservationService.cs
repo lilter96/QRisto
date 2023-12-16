@@ -8,4 +8,8 @@ public interface IReservationService
 {
     Task<Result<List<ReservationRangeResponseModel>>> GetAvailableReservationsAsync(
         GetAvailableReservationsRequestModel model);
+
+    Task<Result<ReservationResponseModel>> ReserveAsync(ReservationRequestModel model);
+
+    Task<Result> CancelReservationAsync(Guid reservationId);
 }

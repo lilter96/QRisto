@@ -12,5 +12,5 @@ public interface IReservationRepository : IGenericRepository<ReservationEntity>
 
     Task UpdateStatusAsync(Guid reservationId, ReservationStatus newStatus);
 
-    Task<List<ReservationEntity>> GetReservationsForDayAsync(Guid serviceId, DateOnly date);
+    Task<List<ReservationEntity>> GetTableReservationsForDayAsync(Guid tableId, DateOnly date);
 }

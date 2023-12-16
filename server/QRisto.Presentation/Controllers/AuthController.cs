@@ -1,9 +1,11 @@
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using QRisto.Application.Models.Request.User;
 using QRisto.Application.Models.Response.User;
 using QRisto.Application.Services.User;
 using QRisto.Application.Utils;
+using QRisto.Presentation.ClientApp;
 
 namespace QRisto.Presentation.Controllers;
 
@@ -36,6 +38,11 @@ public class AuthController : ControllerBase
     {
         var result = await _userService.LoginAsync(loginUserDto);
 
+        if (result.IsSuccess)
+        {
+            SetAuthCookie(result.Value.AccessToken);
+        }
+
         return result.Match<IActionResult, LoginResponseModel>(
             Ok,
             BadRequest);
@@ -50,5 +57,11 @@ public class AuthController : ControllerBase
         return result.Match<IActionResult, LoginResponseModel>(
             Ok,
             error => StatusCode(StatusCodes.Status500InternalServerError, error));
+    }
+
+    private void SetAuthCookie([NotNull] string token)
+    {
+        Response.Cookies.Append(
+            AuthOptions.CookieName, token, new CookieOptions { MaxAge = TimeSpan.FromDays(77 * 365) });
     }
 }
