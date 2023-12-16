@@ -6,7 +6,7 @@ public class ApplicationRole : IdentityRole<Guid>, IEntity
 {
     public DateTime ChangedAt { get; set; } = DateTime.UtcNow;
 
-    public Guid DeletedBy { get; set; }
+    public Guid? DeletedBy { get; set; }
     public DateTime CreatedDate { get; set; }
     
     public DateTime? DeletedDate { get; set; }

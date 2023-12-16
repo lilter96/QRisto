@@ -4,7 +4,7 @@ public class ProviderEntity : IEntity
 {
     public Guid Id { get; set; }
     
-    public Guid DeletedBy { get; set; }
+    public Guid? DeletedBy { get; set; }
 
     public Guid? Owner { get; set; }
     

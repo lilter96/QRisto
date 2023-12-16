@@ -6,7 +6,7 @@ public class ApplicationUser : IdentityUser<Guid>, IEntity
 {
     public DateTime RefreshTokenExpiryTime { get; set; }
 
-    public Guid DeletedBy { get; set; }
+    public Guid? DeletedBy { get; set; }
     
     public DateTime CreatedDate { get; set; }
     

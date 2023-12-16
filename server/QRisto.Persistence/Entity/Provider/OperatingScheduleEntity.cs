@@ -16,7 +16,7 @@ public class OperatingScheduleEntity : IEntity
 
     public Guid Id { get; set; }
     
-    public Guid DeletedBy { get; set; }
+    public Guid? DeletedBy { get; set; }
 
     public DateTime CreatedDate { get; set; }
     
