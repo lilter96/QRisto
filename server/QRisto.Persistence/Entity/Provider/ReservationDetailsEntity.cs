@@ -10,10 +10,14 @@ public class ReservationDetailsEntity : IEntity
 
     public Guid ReservationDetailsId { get; set; }
     public virtual ReservationEntity Reservation { get; set; }
-
+    
     public Guid Id { get; set; }
+    
+    public Guid DeletedBy { get; set; }
 
     public DateTime CreatedDate { get; set; }
+    
+    public DateTime? DeletedDate { get; set; }
 
     public DateTime ModificationDate { get; set; }
 }

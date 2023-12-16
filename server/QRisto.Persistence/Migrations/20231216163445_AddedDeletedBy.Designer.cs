@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using QRisto.Persistence;
 
@@ -11,9 +12,11 @@ using QRisto.Persistence;
 namespace QRisto.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231216163445_AddedDeletedBy")]
+    partial class AddedDeletedBy
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -108,8 +111,8 @@ namespace QRisto.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = new Guid("a7faffdc-89f6-4ddc-9837-806325aebe41"),
-                            RoleId = new Guid("fbd1cd7a-eac2-4286-b5ce-643171139bdd")
+                            UserId = new Guid("26b24173-9e5e-4d26-99dc-b6057f6dac2a"),
+                            RoleId = new Guid("32ad8282-8fb2-44e8-9d34-8442f44fa17b")
                         });
                 });
 
@@ -177,8 +180,8 @@ namespace QRisto.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("fbd1cd7a-eac2-4286-b5ce-643171139bdd"),
-                            ChangedAt = new DateTime(2023, 12, 16, 17, 19, 41, 115, DateTimeKind.Utc).AddTicks(5993),
+                            Id = new Guid("32ad8282-8fb2-44e8-9d34-8442f44fa17b"),
+                            ChangedAt = new DateTime(2023, 12, 16, 16, 34, 45, 613, DateTimeKind.Utc).AddTicks(5156),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             ModificationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -187,8 +190,8 @@ namespace QRisto.Persistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("f484aaa3-6e21-45f3-beb0-1ed2ec4f51dc"),
-                            ChangedAt = new DateTime(2023, 12, 16, 17, 19, 41, 115, DateTimeKind.Utc).AddTicks(6015),
+                            Id = new Guid("3bde2bae-9623-42e7-9cf5-452e17bcea5f"),
+                            ChangedAt = new DateTime(2023, 12, 16, 16, 34, 45, 613, DateTimeKind.Utc).AddTicks(5177),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             ModificationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -197,8 +200,8 @@ namespace QRisto.Persistence.Migrations
                         },
                         new
                         {
-                            Id = new Guid("c100382b-03b8-44e8-a889-87a9a2e66634"),
-                            ChangedAt = new DateTime(2023, 12, 16, 17, 19, 41, 115, DateTimeKind.Utc).AddTicks(6018),
+                            Id = new Guid("2d5dd6be-4a20-4a6a-acc8-dbc1a6ebebda"),
+                            ChangedAt = new DateTime(2023, 12, 16, 16, 34, 45, 613, DateTimeKind.Utc).AddTicks(5180),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             ModificationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -296,9 +299,9 @@ namespace QRisto.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("a7faffdc-89f6-4ddc-9837-806325aebe41"),
+                            Id = new Guid("26b24173-9e5e-4d26-99dc-b6057f6dac2a"),
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ec7a0569-f9c7-40d3-99d5-3aae7399337e",
+                            ConcurrencyStamp = "1a7123c8-e371-482f-b376-c8c0ab2a2930",
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DeletedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             Email = "admin@example.com",
@@ -307,10 +310,10 @@ namespace QRisto.Persistence.Migrations
                             ModificationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             NormalizedEmail = "ADMIN@EXAMPLE.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAENfl0sGeSXHiPCGCNpiNWdnO6V6U+b0utlAjT5X3n/GEzIK/omOKhNUXJ4/SCFdtWw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEJXoOW0PT/f7PlYCe8zWjmyMDlD2pZm8V1itM5mYPi3hggjJjCbBNqXDUOVs5nyXGA==",
                             PhoneNumberConfirmed = false,
                             RefreshTokenExpiryTime = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SecurityStamp = "c38820cd-0f27-4f61-ba92-6bdada4c373f",
+                            SecurityStamp = "2ad50813-d91e-4d27-a999-6f822a2cc1a0",
                             TwoFactorEnabled = false,
                             UserName = "admin"
                         });
@@ -410,9 +413,6 @@ namespace QRisto.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("AddressId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
@@ -438,8 +438,6 @@ namespace QRisto.Persistence.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AddressId");
 
                     b.ToTable("Providers");
                 });
@@ -721,15 +719,6 @@ namespace QRisto.Persistence.Migrations
                         .IsRequired();
 
                     b.Navigation("Service");
-                });
-
-            modelBuilder.Entity("QRisto.Persistence.Entity.Provider.ProviderEntity", b =>
-                {
-                    b.HasOne("QRisto.Persistence.Entity.Provider.AddressEntity", "Address")
-                        .WithMany()
-                        .HasForeignKey("AddressId");
-
-                    b.Navigation("Address");
                 });
 
             modelBuilder.Entity("QRisto.Persistence.Entity.Provider.ReservationDetailsEntity", b =>
