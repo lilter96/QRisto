@@ -156,7 +156,7 @@ public class ReservationService : IReservationService
         {
             slots.Add(new ReservationRangeResponseModel { Start = lastEnd, End = intervalEnd });
         }
-
+        
         return slots;
     }
 

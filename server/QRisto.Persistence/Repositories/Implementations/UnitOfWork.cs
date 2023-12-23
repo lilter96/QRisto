@@ -2,6 +2,7 @@ using System.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using QRisto.Persistence.Repositories.Address;
+using QRisto.Persistence.Repositories.Comment;
 using QRisto.Persistence.Repositories.OperatingSchedule;
 using QRisto.Persistence.Repositories.Provider;
 using QRisto.Persistence.Repositories.Reservation;
@@ -25,6 +26,7 @@ public class UnitOfWork : IDisposable
     private ITableRepository _tableRepository;
     private IDbContextTransaction _transaction;
     private IWorkingIntervalRepository _workingIntervalRepository;
+    private ICommentRepository _commentRepository;
 
     public UnitOfWork(ApplicationDbContext context)
     {
@@ -69,6 +71,11 @@ public class UnitOfWork : IDisposable
     public IWorkingIntervalRepository WorkingIntervalRepository
     {
         get { return _workingIntervalRepository ??= new WorkingIntervalRepository(_context); }
+    }
+
+    public ICommentRepository CommentRepository
+    {
+        get { return _commentRepository ??= new CommentRepository(_context); }
     }
 
     public void Dispose()

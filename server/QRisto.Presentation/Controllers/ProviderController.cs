@@ -1,13 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
 using QRisto.Application.Models.Request.Provider;
-using QRisto.Application.Models.Request.Reservation;
 using QRisto.Application.Models.Response.Provider;
 using QRisto.Application.Services.Provider;
 using QRisto.Application.Utils;
 
 namespace QRisto.Presentation.Controllers;
 
-[Route("api/provider")]
+[Route("api/providers")]
 public class ProviderController : ControllerBase
 {
     private readonly IProviderService _providerService;

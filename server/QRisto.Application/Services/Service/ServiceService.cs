@@ -1,4 +1,5 @@
 using AutoMapper;
+using QRisto.Application.Errors;
 using QRisto.Application.Models.Request.OperatingSchedule;
 using QRisto.Application.Models.Request.Service;
 using QRisto.Application.Models.Response.Service;
@@ -112,6 +113,27 @@ public class ServiceService : IServiceService
         {
             await _unitOfWork.RollbackTransactionAsync();
             return Result.Failure(ex.ToString());
+        }
+    }
+    
+    public async Task<Result<double>> GetAverageRatingAsync(Guid serviceId)
+    {
+        try
+        {
+            var service = await _unitOfWork.ServiceRepository.GetByIdAsync(serviceId);
+
+            if (service == null)
+            {
+                return Result<double>.Failure(ServiceErrors.NotFound);
+            }
+                
+            var averageRating = await _unitOfWork.CommentRepository.GetAverageRatingAsync(serviceId);
+
+            return Result<double>.Success(averageRating);
+        }
+        catch (Exception ex)
+        {
+            return Result<double>.Failure(ex.ToString());
         }
     }
 }
