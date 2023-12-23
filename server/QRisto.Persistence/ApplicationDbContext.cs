@@ -32,6 +32,8 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, Applicati
     public virtual DbSet<WorkingIntervalEntity> WorkingIntervals { get; set; }
 
     public virtual DbSet<OperatingScheduleEntity> OperatingSchedules { get; set; }
+    
+    public virtual DbSet<CommentEntity> Comments { get; set; }
 
     public override int SaveChanges()
     {
@@ -123,6 +125,22 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, Applicati
                 entity.Property(e => e.EndTime).HasColumnType("time");
                 entity.HasIndex(e => new { e.OperatingScheduleId, e.StartTime, e.EndTime }).IsUnique();
                 entity.Property(e => e.Type).HasConversion<string>();
+            });
+
+        builder.Entity<CommentEntity>(
+            entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.HasIndex(e => e.ServiceId);
+                entity.HasIndex(e => e.UserId);
+                entity
+                    .HasOne(e => e.Service)
+                    .WithMany(w => w.Comments)
+                    .HasForeignKey(e => e.ServiceId);
+                entity
+                    .HasOne(e => e.User)
+                    .WithMany(e => e.Comments)
+                    .HasForeignKey(e => e.UserId);
             });
 
         foreach (var entityType in builder.Model.GetEntityTypes())

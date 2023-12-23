@@ -22,4 +22,7 @@ public class UserErrors
     
     public static readonly Error InvalidTokens = new(
         "Users.InvalidTokens", "Api and refresh tokens are invalid.");
+
+    public static readonly Error UnableRetrieve = new(
+        "Users.UnableRetrieve", "Unable to retrieve current authorized user.");
 }

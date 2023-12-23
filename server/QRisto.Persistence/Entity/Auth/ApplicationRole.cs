@@ -21,4 +21,6 @@ public static class ApplicationRoles
     public const string Provider = "Provider";
 
     public const string Default = "Default";
+
+    public const string AllRoles = Default + ", " + Provider + ", " + Admin;
 }

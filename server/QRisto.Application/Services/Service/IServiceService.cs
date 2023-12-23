@@ -10,4 +10,6 @@ public interface IServiceService
     Task<Result<ServiceResponseModel>> CreateAsync(CreateServiceRequestModel model);
 
     Task<Result> AddNewScheduleAsync(AddWeeklyScheduleRequestModel model);
+    
+    public Task<Result<double>> GetAverageRatingAsync(Guid serviceId);
 }

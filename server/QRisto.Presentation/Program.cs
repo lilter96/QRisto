@@ -7,6 +7,7 @@ using Microsoft.Net.Http.Headers;
 using Microsoft.OpenApi.Models;
 using QRisto.Application.Configuration;
 using QRisto.Application.Mappings;
+using QRisto.Application.Services.Comment;
 using QRisto.Application.Services.Provider;
 using QRisto.Application.Services.Reservation;
 using QRisto.Application.Services.Service;
@@ -139,6 +140,7 @@ builder.Services.AddTransient<IProviderService, ProviderService>();
 builder.Services.AddTransient<IReservationService, ReservationService>();
 builder.Services.AddTransient<IServiceService, ServiceService>();
 builder.Services.AddTransient<ITableService, TableService>();
+builder.Services.AddTransient<ICommentService, CommentService>();
 builder.Services.AddScoped<UnitOfWork>();
 
 #endregion

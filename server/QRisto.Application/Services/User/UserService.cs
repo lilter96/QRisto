@@ -1,6 +1,7 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using QRisto.Application.Configuration;
 using QRisto.Application.Models.Request.User;
@@ -20,6 +21,7 @@ public class UserService : IUserService
     private readonly ITokenService _tokenService;
     private readonly UnitOfWork _unitOfWork;
     private readonly UserManager<ApplicationUser> _userManager;
+    private readonly IHttpContextAccessor _httpContextAccessor;
 
     public UserService(
         ITokenService tokenService,
@@ -27,7 +29,8 @@ public class UserService : IUserService
         IMapper mapper,
         JwtOptions jwtOptions,
         RoleManager<ApplicationRole> roleManager,
-        UnitOfWork unitOfWork)
+        UnitOfWork unitOfWork,
+        IHttpContextAccessor httpContextAccessor)
     {
         _tokenService = tokenService ?? throw new ArgumentNullException(nameof(tokenService));
         _userManager = userManager ?? throw new ArgumentNullException(nameof(userManager));
@@ -35,6 +38,29 @@ public class UserService : IUserService
         _jwtOptions = jwtOptions ?? throw new ArgumentNullException(nameof(jwtOptions));
         _roleManager = roleManager ?? throw new ArgumentNullException(nameof(roleManager));
         _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
+        _httpContextAccessor = httpContextAccessor ?? throw new ArgumentNullException(nameof(httpContextAccessor));
+    }
+    
+    public async Task<Result<Guid>> GetCurrentAuthorizedUserIdAsync()
+    {
+        try
+        {
+            var userId = _httpContextAccessor.HttpContext?.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrEmpty(userId))
+            {
+                return Result<Guid>.Failure(
+                    UserErrors.NotFound,
+                    "User not found.");
+            }
+            
+            return await Task.Run(() => Result<Guid>.Success(new Guid(userId)));
+        }
+        catch (Exception ex)
+        {
+            return Result<Guid>.Failure(
+                UserErrors.UnableRetrieve,
+                ex.ToString());
+        }
     }
 
     public async Task<Result<LoginResponseModel>> LoginAsync(LoginRequestModel loginRequestModel)

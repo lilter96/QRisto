@@ -11,4 +11,6 @@ public interface IUserService
     public Task<Result> RegisterAsync(RegisterRequestModel registerUserModel);
 
     public Task<Result<LoginResponseModel>> RefreshTokenAsync(RefreshAccessTokenRequest refreshTokenDto);
+
+    Task<Result<Guid>> GetCurrentAuthorizedUserIdAsync();
 }
